@@ -1,0 +1,74 @@
+{
+  "Base | Code Separator": {
+    "scope": "javascript",
+    "prefix": "sep",
+    "body": "// ------------------------------------------------------"
+  },
+  "Base | Code Separator 2": {
+    "scope": "javascript",
+    "prefix": "sep2",
+    "body": "// ======================================================"
+  },
+  "Base | Console Log": {
+    "scope": "javascript",
+    "prefix": "clog",
+    "body": "console.log($1);$0"
+  },
+  "Base | Import": {
+    "scope": "javascript",
+    "prefix": "impf",
+    "body": "import { $2 } from \"$1\";$0"
+  },
+  "Base | Import Default": {
+    "scope": "javascript",
+    "prefix": "impd",
+    "body": "import ${2:Module} from \"$1\";$0"
+  },
+  "Base | Export": {
+    "scope": "javascript",
+    "prefix": "ex",
+    "body": "export const ${1:name} = $0;"
+  },
+  "Base | Export Default": {
+    "scope": "javascript",
+    "prefix": "exd",
+    "body": "export default $0;"
+  },
+  "Base | Export Default As": {
+    "scope": "javascript",
+    "prefix": "exda",
+    "body": "export { default as ${2:Name} } from \"$1\";$0"
+  },
+  "Vue | Import Component": {
+    "scope": "vue, javascript",
+    "prefix": "impv",
+    "body": "import ${2:Component} from \"${1:path/to/}/${2:Component}.vue\";$0"
+  },
+  "Vue | Component's Template": {
+    "scope": "vue",
+    "prefix": "t_component",
+    "body": [
+      "<template>",
+      "\t<${3:div} class=\"${2:c}-${1:component}\">$0</${3:div}>",
+      "</template>",
+      "\n<script>",
+      "export default {",
+      "\tname: \"${TM_FILENAME_BASE/^([a-zA-Z]+)\\.vue$/$1/}\",",
+      "\t// data: {},",
+      "\t// props: {},",
+      "\t// components: {},",
+      "\t// methods: {}",
+      "};\n</script>"
+    ]
+  },
+  "Vue | Component's Index Template": {
+    "scope": "javascript",
+    "prefix": "t_component-index",
+    "body": [
+      "// ======================================================",
+      "// Components / ${TM_DIRECTORY/.*\\\\([A-Z][a-zA-Z]+)$/$1/}",
+      "// ======================================================\n",
+      "export { default } from \"./${TM_DIRECTORY/.*\\\\([A-Z][a-zA-Z]+)$/$1/}.vue\";$0"
+    ]
+  }
+}
