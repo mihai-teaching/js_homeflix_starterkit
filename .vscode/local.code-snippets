@@ -48,17 +48,17 @@
     "scope": "vue",
     "prefix": "t_component",
     "body": [
-      "<template>",
-      "\t<${3:div} class=\"${2:c}-${1:component}\">$0</${3:div}>",
-      "</template>",
-      "\n<script>",
+      "<script>",
       "export default {",
       "\tname: \"${TM_FILENAME_BASE/^([a-zA-Z]+)\\.vue$/$1/}\",",
       "\t// data: {},",
       "\t// props: {},",
       "\t// components: {},",
       "\t// methods: {}",
-      "};\n</script>"
+      "};\n</script>",
+      "\n<template>",
+      "\t<${3:div} class=\"${2:c}-${1:component}\">$0</${3:div}>",
+      "</template>"
     ]
   },
   "Vue | Component's Index Template": {
