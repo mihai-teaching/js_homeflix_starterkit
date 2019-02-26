@@ -5,11 +5,13 @@
 .c-spinner {
   width: rem($spinner--size);
   height: rem($spinner--size);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: rem(-$spinner--size);
-  margin-top: rem(-$spinner--size);
+  .c-overlay & {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: rem(-$spinner--size);
+    margin-top: rem(-$spinner--size);
+  }
 }
 
 .c-spinner_inner1,

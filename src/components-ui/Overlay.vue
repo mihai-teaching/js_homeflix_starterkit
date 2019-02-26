@@ -16,7 +16,7 @@ export default {
 <template>
   <transition v-if="show" name="fade">
     <aside class="c-overlay o-overlay">
-      <Spinner/>
+      <Spinner :show="true"/>
     </aside>
   </transition>
 </template>
