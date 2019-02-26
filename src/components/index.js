@@ -1,5 +1,10 @@
 // ======================================================
-// Store / Modules / App
+// Export
 // ======================================================
 
-export default {};
+// Stores
+import app from "./App/core/module";
+
+export default {
+  app
+};
