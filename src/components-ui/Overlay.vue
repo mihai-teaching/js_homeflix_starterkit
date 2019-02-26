@@ -1,7 +1,12 @@
 <script>
+// Components
 import Spinner from "./Spinner.vue";
+
 export default {
   name: "Overlay",
+  props: {
+    show: Boolean
+  },
   components: {
     Spinner
   }
@@ -9,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <transition name="fade">
+  <transition v-if="show" name="fade">
     <aside class="c-overlay o-overlay">
       <Spinner/>
     </aside>
