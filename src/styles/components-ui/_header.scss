@@ -1,0 +1,23 @@
+// ======================================================
+// Components-ui / Header
+// ======================================================
+
+.c-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: rem($header--height);
+}
+
+.c-header_title {
+  color: $main-color;
+  transition: $header--title-speed $delay ease-out;
+  .c-header.v-enter & {
+    opacity: 0;
+    transform: translateY(rem(-$unit / 2));
+  }
+  .c-header.v-enter-to & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

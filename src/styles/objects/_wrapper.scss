@@ -1,8 +1,8 @@
 // ======================================================
-// Components-ui / Overlay
+// Objects / Wrapper
 // ======================================================
 
-.c-overlay {
-  z-index: 1000;
-  background-color: $bg-color;
+.o-wrapper {
+  padding-left: rem($unit * 2);
+  padding-right: rem($unit * 2);
 }
