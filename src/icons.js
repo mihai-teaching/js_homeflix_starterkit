@@ -2,9 +2,12 @@
 // Icons
 // ======================================================
 
-import Vue from "vue";
-
 // Icons
+import Vue from "vue";
 import AddIcon from "vue-ionicons/dist/md-add-circle-outline";
 
-Vue.component("AddIcon", AddIcon);
+// Helper
+const createIcon = (name, icon) => ({ name, icon });
+
+// Create Global components
+[createIcon("AddIcon", AddIcon)].forEach(o => Vue.component(o.name, o.icon));
