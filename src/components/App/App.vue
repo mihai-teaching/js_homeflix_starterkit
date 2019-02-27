@@ -4,7 +4,7 @@ import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
 // Components
 import Login from "../Login/Login.vue";
 import Footer from "../../components-ui/Footer.vue";
-import Overlay from "../../components-ui/Overlay.vue";
+import Loading from "../../components-ui/Loading.vue";
 
 // Constants
 import { APP_STATE, OVERLAY_SPEED } from "./core/constants";
@@ -13,14 +13,14 @@ export default {
   name: "App",
   components: {
     Login,
-    Overlay,
+    Loading,
     Footer
   },
   computed: {
-    ...mapGetters("app", ["appCurrentState", "isAppReady", "isOverlay"])
+    ...mapGetters("app", ["appCurrentState", "isAppReady", "isLoading"])
   },
   methods: {
-    ...mapActions("app", ["hideOverlay", "setAppReady", "toggleOverlay"]),
+    ...mapActions("app", ["hideLoading", "setAppReady", "toggleLoading"]),
     // Check if the login should be displayed, else content
     getLoginVisibility() {
       switch (this.appCurrentState) {
@@ -35,7 +35,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.setAppReady(true);
-      this.hideOverlay();
+      this.hideLoading();
     }, OVERLAY_SPEED);
   }
 };
@@ -43,7 +43,7 @@ export default {
 
 <template>
   <div class="c-app">
-    <Overlay :show="isOverlay"/>
+    <Loading :show="isLoading"/>
     <Login :show="getLoginVisibility()"/>
     <!-- <Main :show="!getLoginVisibility()"/> -->
     <!-- <InfoBubble class="c-header_info-bubble"/> little circle at the bottom right -->

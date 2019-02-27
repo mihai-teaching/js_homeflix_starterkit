@@ -5,7 +5,7 @@
 .c-spinner {
   width: rem($spinner--size);
   height: rem($spinner--size);
-  .c-overlay & {
+  .c-loading & {
     position: absolute;
     top: 50%;
     left: 50%;
