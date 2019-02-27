@@ -8,8 +8,8 @@ export default {
 </script>
 
 <template>
-  <transition v-if="show" name="fade">
-    <div class="c-spinner">
+  <transition name="fade">
+    <div v-if="show" class="c-spinner">
       <div class="c-spinner_inner1"></div>
       <div class="c-spinner_inner2"></div>
     </div>
