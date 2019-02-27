@@ -1,0 +1,18 @@
+// ======================================================
+// Components-ui / Footer
+// ======================================================
+
+$footer--padding: $unit / 5;
+
+.c-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: rem($footer--padding);
+  padding-bottom: rem($footer--padding);
+
+  text-align: center;
+  font-weight: 200;
+  color: lighten($bg-color, 8%);
+  background-color: darken($bg-color, 2%);
+}
