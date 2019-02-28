@@ -2,9 +2,11 @@
 import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
 
 // Components
-import Login from "../Login/Login.vue";
 import Footer from "../../components-ui/Footer.vue";
-import Loading from "../../components-ui/Loading.vue";
+import Header from "../Header/Header.vue";
+import InfoBubble from "../InfoBubble/InfoBubble.vue";
+import Loading from "../Loading/Loading.vue";
+import Login from "../Login/Login.vue";
 
 // Constants
 import { APP_STATE, OVERLAY_SPEED } from "./core/constants";
@@ -12,9 +14,11 @@ import { APP_STATE, OVERLAY_SPEED } from "./core/constants";
 export default {
   name: "App",
   components: {
+    Footer,
+    Header,
+    InfoBubble,
     Login,
-    Loading,
-    Footer
+    Loading
   },
   computed: {
     ...mapGetters("app", ["appCurrentState", "isAppReady", "isLoading"])
@@ -34,8 +38,8 @@ export default {
   updated() {},
   mounted() {
     setTimeout(() => {
-      this.setAppReady(true);
       this.hideLoading();
+      setTimeout(() => this.setAppReady(true), OVERLAY_SPEED / 3);
     }, OVERLAY_SPEED);
   }
 };
@@ -43,10 +47,11 @@ export default {
 
 <template>
   <div class="c-app">
-    <Loading :show="isLoading"/>
-    <Login :show="getLoginVisibility()"/>
+    <Loading/>
+    <Header/>
+    <Login/>
     <!-- <Main :show="!getLoginVisibility()"/> -->
-    <!-- <InfoBubble class="c-header_info-bubble"/> little circle at the bottom right -->
+    <InfoBubble/>
     <Footer/>
   </div>
 </template>

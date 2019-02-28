@@ -1,17 +1,19 @@
 <script>
+import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
+
 // Components
-import Spinner from "./Spinner.vue";
+import Spinner from "../../components-ui/Spinner.vue";
 
 // Constants
-import { OVERLAY_SPEED } from "../components/App/core/constants";
+import { OVERLAY_SPEED } from "../App/core/constants";
 
 export default {
   name: "Loading",
   data: function() {
     return { duration: OVERLAY_SPEED };
   },
-  props: {
-    show: Boolean
+  computed: {
+    ...mapGetters("app", ["isLoading"])
   },
   components: {
     Spinner
@@ -21,7 +23,7 @@ export default {
 
 <template>
   <transition name="fade" :duration="duration">
-    <aside v-if="show" class="c-loading o-overlay">
+    <aside v-if="isLoading" class="c-loading o-overlay">
       <Spinner :show="true"/>
     </aside>
   </transition>
