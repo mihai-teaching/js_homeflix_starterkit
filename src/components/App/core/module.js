@@ -15,7 +15,7 @@ const dispatchHelper = (action, dispatch) =>
 export default {
   namespaced: true,
   state: {
-    currState: APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION, // use local storage
+    currState: APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION, // use local storage
     username: null, // use local storage
     isAuthenticated: false, // use local storage
     isAppReady: false,

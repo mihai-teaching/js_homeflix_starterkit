@@ -44,13 +44,14 @@
 // Components
 // ==========================================================================
 // @import "components/component";
-@import "components-ui/loading";
+@import "components/header";
+@import "components/info-bubble";
+@import "components/loading";
 
 // Components - UI
 // ==========================================================================
 // @import "components-ui/component";
 @import "components-ui/footer";
-@import "components-ui/header";
 @import "components-ui/spinner";
 
 // Utilities

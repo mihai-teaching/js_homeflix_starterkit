@@ -1,0 +1,103 @@
+// ======================================================
+// Components / Info Bubble
+// ======================================================
+
+$info-bubble--size: 42px;
+$info-bubble--icon-size: 38px;
+
+$info-bubble--tooltip-code-color: rgb(255, 251, 0);
+$info-bubble--tooltip-color: darken($main-color, 15%);
+
+$info-bubble--tooltip-arrow-size: 10px;
+$info-bubble--tooltip-border-radius: 6px;
+$info-bubble--tooltip-padding: $unit / 3;
+$info-bubble--tooltip-margin: $unit / 2;
+$info-bubble--speed: $speed * 4;
+$info-bubble--delay: $speed * 3;
+
+.c-info-bubble {
+  position: fixed;
+  right: rem($unit);
+  bottom: rem($unit);
+
+  width: rem($info-bubble--size);
+  height: rem($info-bubble--size);
+
+  border-radius: 50%;
+  border: solid darken($main-color, 25%) 3px;
+  background-color: $main-color;
+  transition: background-color $speed;
+  &:hover {
+    background-color: lighten($main-color, 5%);
+  }
+
+  &.fadeUp-enter-active {
+    animation-duration: $info-bubble--speed;
+    animation-delay: $info-bubble--delay;
+  }
+}
+
+.c-info-bubble_icon {
+  color: rgba($color: $white, $alpha: 0.7);
+  font-size: rem($info-bubble--icon-size);
+}
+
+// Tooltip
+// ======================================================
+
+.tooltip {
+  display: block !important;
+  z-index: 10000;
+
+  &[aria-hidden="true"] {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity $speed, visibility $speed;
+  }
+
+  &[aria-hidden="false"] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity $speed;
+  }
+}
+
+.tooltip-inner {
+  padding: rem($info-bubble--tooltip-padding);
+  margin-bottom: rem($info-bubble--tooltip-margin);
+
+  color: $white;
+  font-weight: 200;
+  border-radius: rem($info-bubble--tooltip-border-radius);
+  background: $info-bubble--tooltip-color;
+
+  span {
+    &.-code,
+    &.-highlight {
+      font-weight: bold;
+    }
+    &.-code {
+      color: $info-bubble--tooltip-code-color;
+    }
+  }
+}
+
+.tooltip-arrow {
+  width: 0;
+  height: 0;
+  margin: 0 $info-bubble--tooltip-arrow-size;
+
+  position: absolute;
+  z-index: 1;
+  bottom: rem($info-bubble--tooltip-margin - $info-bubble--tooltip-arrow-size);
+  left: calc(50% - $info-bubble--tooltip-arrow-size);
+
+  border-style: solid;
+  border-color: $info-bubble--tooltip-color;
+  border-width: $info-bubble--tooltip-arrow-size;
+  border-bottom-width: 0;
+
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
