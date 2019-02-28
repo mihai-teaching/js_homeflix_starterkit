@@ -12,8 +12,8 @@ import "vue2-animate/dist/vue2-animate.min.css";
 import "vue-ionicons/dist/ionicons.css";
 import "./styles/main.scss";
 
-// Setup Icons
-import "./icons";
+// Setup Plugins
+import "./plugins";
 
 // Launch Vue
 Vue.config.productionTip = false;
