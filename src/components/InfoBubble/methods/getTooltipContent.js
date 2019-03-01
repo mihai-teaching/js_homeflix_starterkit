@@ -7,12 +7,22 @@ import { APP_STATE } from "../../App/core/constants";
 // Helpers
 // ======================================================
 
-const createCode = content => `<span class="-code">${content}</span>`;
-const createHighlight = content => `<span class="-highlight">${content}</span>`;
+/**
+ * Format a function and its arguments.
+ * @param {string} fn Function's name.
+ * @param {[string]} args Array of the function's arguments name.
+ */
+const functionHighlightHelper = (fn, args = []) =>
+  `<span class="-function">${fn}( ${args
+    .map(arg => `<span class="-argument">${arg}</span>`)
+    .join(", ")} )</span>`;
+
+const textHighlightHelper = content =>
+  `<span class="-highlight">${content}</span>`;
 
 // Alias
-const cc = createCode;
-const ch = createHighlight;
+const fh = functionHighlightHelper;
+const th = textHighlightHelper;
 
 // Export
 // ======================================================
@@ -24,14 +34,15 @@ const ch = createHighlight;
 export default appCurrentState => {
   switch (appCurrentState) {
     case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
-      return `You must ${ch("create")} and ${ch("complete")} the function ${cc(
-        "usernameValidation()"
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "usernameValidation",
+        ["value"]
       )}.`;
     case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
-      return `You must ${ch("create")} and ${ch(
-        "complete"
-      )} the function <span class="-code">passwordValidation()</span>.`;
-
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "passwordValidation",
+        ["value"]
+      )}`;
     case APP_STATE.HEADER__UPDATING_USER_INFOS:
     case APP_STATE.MOVIES__ADDING_SEARCH_FEATURE:
     case APP_STATE.MOVIES__ADDING_ORDER_FILTER_FEATURE:

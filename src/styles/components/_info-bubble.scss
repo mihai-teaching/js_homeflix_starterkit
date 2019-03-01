@@ -2,19 +2,6 @@
 // Components / Info Bubble
 // ======================================================
 
-$info-bubble--size: 42px;
-$info-bubble--icon-size: 38px;
-
-$info-bubble--tooltip-code-color: rgb(255, 251, 0);
-$info-bubble--tooltip-color: darken($main-color, 15%);
-
-$info-bubble--tooltip-arrow-size: 10px;
-$info-bubble--tooltip-border-radius: 6px;
-$info-bubble--tooltip-padding: $unit / 3;
-$info-bubble--tooltip-margin: $unit / 2;
-$info-bubble--speed: $speed * 4;
-$info-bubble--delay: $speed * 3;
-
 .c-info-bubble {
   position: fixed;
   right: rem($unit);
@@ -47,7 +34,7 @@ $info-bubble--delay: $speed * 3;
 
 .tooltip {
   display: block !important;
-  z-index: 10000;
+  z-index: 900;
 
   &[aria-hidden="true"] {
     visibility: hidden;
@@ -67,17 +54,20 @@ $info-bubble--delay: $speed * 3;
   margin-bottom: rem($info-bubble--tooltip-margin);
 
   color: $white;
-  font-weight: 200;
+  font-weight: 300;
   border-radius: rem($info-bubble--tooltip-border-radius);
-  background: $info-bubble--tooltip-color;
+  background-color: $info-bubble--tooltip-color;
 
   span {
-    &.-code,
+    &.-function,
     &.-highlight {
       font-weight: bold;
     }
-    &.-code {
-      color: $info-bubble--tooltip-code-color;
+    &.-function {
+      color: $info-bubble--tooltip-function-color;
+      & .-argument {
+        color: $info-bubble--tooltip-argument-color;
+      }
     }
   }
 }

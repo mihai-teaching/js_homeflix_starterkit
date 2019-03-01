@@ -11,3 +11,16 @@ $spinner--size: 60px;
 // ======================================================
 
 $header--height: 80px;
+
+// Info Bubble
+// ======================================================
+
+$info-bubble--size: 42px;
+$info-bubble--icon-size: 38px;
+$info-bubble--speed: $speed * 4;
+$info-bubble--delay: $speed * 3;
+
+$info-bubble--tooltip-arrow-size: 10px;
+$info-bubble--tooltip-border-radius: 6px;
+$info-bubble--tooltip-padding: $unit / 3;
+$info-bubble--tooltip-margin: $unit / 2;
