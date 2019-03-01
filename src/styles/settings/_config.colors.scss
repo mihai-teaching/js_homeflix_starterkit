@@ -12,10 +12,17 @@ $black: #000000;
 
 $bg-color: rgb(32, 32, 37);
 $main-color: #bb415f;
+$main-color-dark: darken($main-color, 10%);
 
 // Components
 // ======================================================
 
+// Login
+$login--input-color: #b3b3c5;
+$login--input-bg-color: #34343e;
+$login--error-color: #e1a1f8;
+
+// Info Bubble
 $info-bubble--tooltip-color: rgb(60, 60, 60);
 $info-bubble--tooltip-function-color: rgb(100, 255, 242);
 $info-bubble--tooltip-argument-color: rgb(161, 255, 83);

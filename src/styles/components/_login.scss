@@ -1,0 +1,71 @@
+// ======================================================
+// Components / Login
+// ======================================================
+
+.c-login {
+  margin-top: rem($login--offset);
+  text-align: center;
+}
+
+.c-login_title {
+  color: $white;
+  font-weight: 200;
+}
+
+.c-login_hr {
+  width: rem($login--hr-width);
+  margin-top: $unit / 6;
+  margin-bottom: $unit * 0.6;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: lighten($bg-color, 15%);
+}
+
+// Form
+// ======================================================
+
+.c-login_form,
+.c-login_input-group_input {
+  width: rem($login--form-width);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.c-login_input-group_input {
+  padding: rem($unit / 6) rem($unit / 3);
+  color: $login--input-color;
+  background-color: $login--input-bg-color;
+}
+
+.c-login_input-group_error {
+  display: block;
+  text-align: left;
+  margin-top: rem($unit / 8);
+  margin-bottom: rem($unit / 6);
+  padding: 0 rem($unit / 8);
+
+  opacity: 0;
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: $login--error-color;
+  transition: opacity $speed * 2;
+  &.-error {
+    opacity: 1;
+  }
+}
+
+.c-login_btn {
+  width: rem($login--btn-width);
+  padding: rem($unit / 6) 0;
+  margin-top: rem($unit / 2);
+  cursor: pointer;
+
+  color: $white;
+  background-color: $main-color;
+  border-radius: rem($login--btn-border-radius);
+  transition: background-color $speed;
+
+  &:hover {
+    background-color: $main-color-dark;
+  }
+}
