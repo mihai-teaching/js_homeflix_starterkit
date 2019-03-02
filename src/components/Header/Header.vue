@@ -16,10 +16,10 @@ export default {
 </script>
 
 <template>
-  <header class="c-header o-wrapper">
-    <transition name="fadeDown">
-      <h1 v-if="isAppReady" class="c-header_title">Homeflix</h1>
-    </transition>
-    <!-- <LogoutButton class="c-header_logout-btn"> -->
-  </header>
+  <transition :duration="2000">
+    <header v-if="isAppReady" class="c-header o-wrapper">
+      <h1 class="c-header_title">Homeflix</h1>
+      <!-- <LogoutButton class="c-header_logout-btn"> -->
+    </header>
+  </transition>
 </template>

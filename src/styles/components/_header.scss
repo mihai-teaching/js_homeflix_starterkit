@@ -12,3 +12,22 @@
 .c-header_title {
   color: $main-color;
 }
+
+// Animations
+// ======================================================
+
+.c-header {
+  &.v-enter {
+    .c-header_title {
+      opacity: 0;
+      transform: translateY(rem(-$header--translation));
+    }
+  }
+  &.v-enter-to {
+    .c-header_title {
+      opacity: 1;
+      transform: translateY(0);
+      transition: $header--speed $login--total-delay ease-out;
+    }
+  }
+}

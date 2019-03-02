@@ -20,7 +20,7 @@
 
   &.fadeUp-enter-active {
     animation-duration: $info-bubble--speed;
-    animation-delay: $info-bubble--delay;
+    animation-delay: $header--speed + $login--total-delay;
   }
 }
 

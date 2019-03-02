@@ -69,3 +69,43 @@
     background-color: $main-color-dark;
   }
 }
+
+// Animation
+// ======================================================
+
+.c-login {
+  &.v-enter {
+    .c-login_title,
+    .c-login_hr,
+    .c-login_input-group,
+    .c-login_btn {
+      opacity: 0;
+      transform: translateY(rem($unit / 4));
+    }
+  }
+  &.v-enter-to {
+    .c-login_title,
+    .c-login_hr,
+    .c-login_input-group,
+    .c-login_btn {
+      opacity: 1;
+      transform: translateY(0);
+      transition: $speed * 2 ease-out;
+    }
+
+    .c-login_title,
+    .c-login_hr {
+      transition-delay: $login--delay;
+    }
+    .c-login_input-group {
+      @for $i from 2 to 4 {
+        &:nth-child(#{$i - 1}) {
+          transition-delay: #{$i * $login--delay};
+        }
+      }
+    }
+    .c-login_btn {
+      transition-delay: $login--delay * 4;
+    }
+  }
+}

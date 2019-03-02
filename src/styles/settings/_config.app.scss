@@ -11,6 +11,8 @@ $spinner--size: 60px;
 // ======================================================
 
 $header--height: 80px;
+$header--translation: $unit / 2;
+$header--speed: $speed * 3;
 
 // Login
 // ======================================================
@@ -20,6 +22,8 @@ $login--hr-width: 60px;
 $login--form-width: 400px;
 $login--btn-width: 160px;
 $login--btn-border-radius: $unit / 3;
+$login--delay: $speed / 2;
+$login--total-delay: $speed * 2;
 
 // Info Bubble
 // ======================================================
