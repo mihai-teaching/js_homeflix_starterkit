@@ -60,13 +60,17 @@
 
   span {
     &.-function,
-    &.-highlight {
+    &.-highlight,
+    &.-return {
       font-weight: bold;
     }
     &.-function {
       color: $info-bubble--tooltip-function-color;
       & .-argument {
         color: $info-bubble--tooltip-argument-color;
+      }
+      & .-return {
+        color: $info-bubble--tooltip-return-color;
       }
     }
   }

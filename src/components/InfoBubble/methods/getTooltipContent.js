@@ -11,11 +11,12 @@ import { APP_STATE } from "../../App/core/constants";
  * Format a function and its arguments.
  * @param {string} fn Function's name.
  * @param {[string]} args Array of the function's arguments name.
+ * @param {string} returnType Function's return type.
  */
-const functionHighlightHelper = (fn, args = []) =>
+const functionHighlightHelper = (fn, args = [], returnType = "void") =>
   `<span class="-function">${fn}( ${args
     .map(arg => `<span class="-argument">${arg}</span>`)
-    .join(", ")} )</span>`;
+    .join(", ")} ) : <span class="-return">${returnType}</span></span>`;
 
 const textHighlightHelper = content =>
   `<span class="-highlight">${content}</span>`;
@@ -36,12 +37,14 @@ export default appCurrentState => {
     case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
       return `${th("Create")} and ${th("complete")} the function ${fh(
         "usernameValidation",
-        ["value"]
+        ["value"],
+        "Boolean"
       )}.`;
     case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
       return `${th("Create")} and ${th("complete")} the function ${fh(
         "passwordValidation",
-        ["value"]
+        ["value"],
+        "Boolean"
       )}`;
     case APP_STATE.HEADER__UPDATING_USER_INFOS:
     case APP_STATE.MOVIES__ADDING_SEARCH_FEATURE:
