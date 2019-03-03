@@ -23,8 +23,8 @@ export default {
     isOverlay: false
   },
   actions: {
-    setAppState({ commit }, value) {
-      commit("setCurrentState", value);
+    setAppState({ commit }, value, extras = {}) {
+      commit("setCurrentState", { newState: value, ...extras });
     },
     setAppReady({ commit }, value) {
       commit("setAppReady", value);
@@ -59,9 +59,13 @@ export default {
     isOverlay: state => state.isOverlay
   },
   mutations: {
-    setCurrentState(state, newState) {
-      if (state.currState !== newState) {
-        state.currState = newState;
+    setCurrentState(state, params) {
+      if (params.newState === APP_STATE.HEADER__UPDATING_USER_INFOS) {
+        state.username = params.username;
+        state.isAuthenticated = true;
+      }
+      if (state.currState !== params.newState) {
+        state.currState = params.newState;
       }
     },
     setAppReady(state, value) {

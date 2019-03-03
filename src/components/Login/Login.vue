@@ -88,9 +88,11 @@ export default {
         this.setUsernameValidState(isUsernameValid);
         const isPasswordValid = validateUsername(passwordValue);
         this.setPasswordValidState(isPasswordValid);
-        //
+        // Change state
         if (isUsernameValid && isPasswordValid) {
-          this.setAppState(APP_STATE.HEADER__UPDATING_USER_INFOS);
+          this.setAppState(APP_STATE.HEADER__UPDATING_USER_INFOS, {
+            username: usernameValue
+          });
         }
       } else {
         if (!validateUsername) this.setUsernameValidState(false);

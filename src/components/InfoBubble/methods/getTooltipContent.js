@@ -49,6 +49,10 @@ export default appCurrentState => {
     case APP_STATE.LOGIN__LOG_INTO_APP:
       return `Press the ${th("Login")} button`;
     case APP_STATE.HEADER__UPDATING_USER_INFOS:
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "updateHeader",
+        ["username"]
+      )}`;
     case APP_STATE.MOVIES__ADDING_SEARCH_FEATURE:
     case APP_STATE.MOVIES__ADDING_ORDER_FILTER_FEATURE:
     case APP_STATE.MOVIES__ADDING_GENRE_FILTER_FEATURE:
