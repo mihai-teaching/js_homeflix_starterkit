@@ -17,9 +17,11 @@ $main-color-dark: darken($main-color, 10%);
 // Components
 // ======================================================
 
+// Form
+$form--input-color: #b3b3c5;
+$form--input-bg-color: #34343e;
+
 // Login
-$login--input-color: #b3b3c5;
-$login--input-bg-color: #34343e;
 $login--error-color: #e1a1f8;
 
 // Info Bubble

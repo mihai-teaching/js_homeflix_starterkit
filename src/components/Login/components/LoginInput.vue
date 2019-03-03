@@ -25,7 +25,7 @@ export default {
 <template>
   <div class="c-login_input-group">
     <input
-      class="c-login_input-group_input"
+      class="c-login_input-group_input o-input"
       :type="type"
       :placeholder="placeholder"
       @keyup="onChange"
