@@ -56,18 +56,7 @@
 
 .c-login_btn {
   width: rem($login--btn-width);
-  padding: rem($unit / 6) 0;
   margin-top: rem($unit / 2);
-  cursor: pointer;
-
-  color: $white;
-  background-color: $main-color;
-  border-radius: rem($login--btn-border-radius);
-  transition: background-color $speed;
-
-  &:hover {
-    background-color: $main-color-dark;
-  }
 }
 
 // Animation

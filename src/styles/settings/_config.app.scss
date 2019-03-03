@@ -2,6 +2,11 @@
 // Settings / Config / App
 // ==========================================================================
 
+// Objects
+// ======================================================
+
+$btn--border-radius: $unit / 3;
+
 // Spinner
 // ======================================================
 
@@ -10,9 +15,12 @@ $spinner--size: 60px;
 // Header
 // ======================================================
 
-$header--height: 80px;
+$header--height: 100px;
 $header--translation: $unit / 2;
 $header--speed: $speed * 3;
+$header--welcome-size: 15px;
+$header--auth-space-left: $unit / 3;
+$header--btn-width: 110px;
 
 // Login
 // ======================================================
@@ -21,7 +29,6 @@ $login--offset: 120px;
 $login--hr-width: 60px;
 $login--form-width: 400px;
 $login--btn-width: 160px;
-$login--btn-border-radius: $unit / 3;
 $login--delay: $speed / 2;
 $login--total-delay: $speed * 2;
 

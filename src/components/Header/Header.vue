@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 // Components
 import LogoutButton from "../LogoutButton/LogoutButton.vue";
@@ -7,10 +7,13 @@ import LogoutButton from "../LogoutButton/LogoutButton.vue";
 export default {
   name: "Header",
   computed: {
-    ...mapGetters("app", ["isAppReady"])
+    ...mapGetters("app", ["isAppReady", "isAuthenticated"])
   },
   components: {
     LogoutButton
+  },
+  methods: {
+    ...mapActions("app", ["logout"])
   }
 };
 </script>
@@ -18,8 +21,23 @@ export default {
 <template>
   <transition :duration="2000">
     <header v-if="isAppReady" class="c-header o-wrapper">
-      <h1 class="c-header_title">Homeflix</h1>
-      <!-- <LogoutButton class="c-header_logout-btn"> -->
+      <div>
+        <h1 class="c-header_title">Homeflix</h1>
+        <transition :duration="3500">
+          <div v-if="isAuthenticated" class="c-header_auth">
+            <h3 class="c-header_welcome">Welcome</h3>
+            <p id="username" class="c-header_username">USERNAME_ERROR</p>
+          </div>
+        </transition>
+      </div>
+      <div>
+        <button
+          v-if="isAuthenticated"
+          @click="logout"
+          type="button"
+          class="c-header_logout-btn o-btn"
+        >Logout</button>
+      </div>
     </header>
   </transition>
 </template>

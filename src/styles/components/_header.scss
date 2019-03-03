@@ -9,8 +9,39 @@
   height: rem($header--height);
 }
 
+.c-header_title,
+.c-header_auth {
+  display: inline-block;
+}
+
 .c-header_title {
   color: $main-color;
+}
+
+$header--welcome-size: 15px;
+$header--auth-space-left: $unit / 3;
+$header--btn-width: 110px;
+
+.c-header_auth {
+  color: $white;
+  margin-left: rem($header--auth-space-left);
+  padding-left: rem($header--auth-space-left);
+  position: relative;
+  top: rem(5px);
+}
+
+.c-header_welcome {
+  font-size: rem($header--welcome-size);
+  margin-bottom: rem(2px);
+}
+
+.c-header_username {
+  font-weight: 200;
+  margin: 0;
+}
+
+.c-header_logout-btn {
+  width: $header--btn-width;
 }
 
 // Animations
@@ -24,10 +55,39 @@
     }
   }
   &.v-enter-to {
-    .c-header_title {
+    .c-header_title,
+    .c-header_welcome,
+    .c-header_username {
       opacity: 1;
-      transform: translateY(0);
+    }
+    .c-header_welcome {
+      transition: $header--speed #{$login--total-delay + $header--speed} ease-out;
+    }
+    .c-header_username {
+      transition: $header--speed #{$login--total-delay + $header--speed + $speed}
+        ease-out;
+    }
+    .c-header_title {
       transition: $header--speed $login--total-delay ease-out;
+    }
+  }
+}
+
+.c-header_auth {
+  &.v-enter {
+    .c-header_welcome,
+    .c-header_username {
+      opacity: 0;
+    }
+  }
+  &.v-enter-to {
+    .c-header_welcome,
+    .c-header_username {
+      opacity: 1;
+      transition: $header--speed #{$login--total-delay + $header--speed} ease-out;
+    }
+    .c-header_username {
+      transition-delay: #{$login--total-delay + $header--speed + $speed};
     }
   }
 }

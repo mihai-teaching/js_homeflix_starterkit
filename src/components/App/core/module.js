@@ -6,8 +6,8 @@
 import { APP_STATE, LOADING_SPEED } from "./constants";
 
 // Helpers
-const dispatchHelper = (action, dispatch) =>
-  dispatch(action, null, { root: true });
+const dispatchHelper = (action, dispatch, opt = null) =>
+  dispatch(action, opt, { root: true });
 
 // Check if data from cookie is valid : ... isAuthenticated = true ... username = null???
 // const getValidState = () => null
@@ -29,20 +29,23 @@ export default {
     setAppReady({ commit }, value) {
       commit("setAppReady", value);
     },
-    toggleLoading({ commit }) {
+    toggleLoading({ commit }, delay) {
       commit("showLoading");
-      setTimeout(() => commit("hideLoading"), LOADING_SPEED * 5);
+      setTimeout(() => commit("hideLoading"), delay);
     },
     login({ commit, dispatch }, username) {
-      commit("login", username);
-      dispatchHelper("app/toggleLoading", dispatch);
-      setTimeout(
-        () => commit("setCurrentState", APP_STATE.HEADER__UPDATING_USER_INFOS),
-        LOADING_SPEED * 5
-      );
+      dispatchHelper("app/toggleLoading", dispatch, LOADING_SPEED * 6);
+      setTimeout(() => {
+        commit("login", username);
+        commit("setCurrentState", APP_STATE.HEADER__UPDATING_USER_INFOS);
+      }, LOADING_SPEED * 5);
     },
-    logout({ commit }) {
-      setTimeout(() => commit("logout"), LOADING_SPEED);
+    logout({ commit, dispatch }) {
+      commit("logout");
+      dispatchHelper("app/toggleLoading", dispatch, LOADING_SPEED * 10);
+      setTimeout(() => {
+        commit("setCurrentState", APP_STATE.LOGIN__LOG_INTO_APP);
+      }, LOADING_SPEED * 3);
     },
     hideLoading({ commit }) {
       commit("hideLoading");

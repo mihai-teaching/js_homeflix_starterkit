@@ -126,7 +126,7 @@ export default {
           :hasError="!isPasswordValid"
           errorMsg="The password is not valid"
         />
-        <button type="submit" class="c-login_btn">Login</button>
+        <button type="submit" class="c-login_btn o-btn">Login</button>
       </form>
     </div>
   </transition>
