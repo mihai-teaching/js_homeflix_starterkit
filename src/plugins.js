@@ -10,6 +10,7 @@ import HelpIcon from "vue-ionicons/dist/ios-help";
 
 // Plugins
 import VTooltip from "v-tooltip";
+import vSelect from "vue-select";
 
 // Icons
 // ======================================================
@@ -26,3 +27,4 @@ const createIcon = (name, icon) => ({ name, icon });
 // ======================================================
 
 Vue.use(VTooltip);
+Vue.component("v-select", vSelect);
