@@ -93,7 +93,7 @@ export default {
         this.setPasswordValidState(isPasswordValid);
         // Change state
         if (isUsernameValid && isPasswordValid) {
-          this.login();
+          this.login(usernameValue);
         }
       } else {
         if (!validateUsername) this.setUsernameValidState(false);

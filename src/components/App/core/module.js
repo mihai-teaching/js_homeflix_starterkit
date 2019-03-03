@@ -2,8 +2,14 @@
 // Components / App / Core / Store
 // ======================================================
 
+// Helpers
+import data from "../../../_helpers/getData";
+
 // Constants
 import { APP_STATE, LOADING_SPEED } from "./constants";
+
+// Student's code
+const { updateHeader } = data;
 
 // Helpers
 const dispatchHelper = (action, dispatch, opt = null) =>
@@ -38,6 +44,12 @@ export default {
       setTimeout(() => {
         commit("login", username);
         commit("setCurrentState", APP_STATE.HEADER__UPDATING_USER_INFOS);
+        if (updateHeader) {
+          commit("setCurrentState", APP_STATE.MOVIES__ADDING_SEARCH_FEATURE);
+          setTimeout(() => {
+            updateHeader(username);
+          }, 100);
+        }
       }, LOADING_SPEED * 5);
     },
     logout({ commit, dispatch }) {

@@ -1,16 +1,10 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 
-// Components
-import LogoutButton from "../LogoutButton/LogoutButton.vue";
-
 export default {
   name: "Header",
   computed: {
     ...mapGetters("app", ["isAppReady", "isAuthenticated"])
-  },
-  components: {
-    LogoutButton
   },
   methods: {
     ...mapActions("app", ["logout"])

@@ -15,11 +15,12 @@ if (window && typeof window === "object") {
     [Function, "validateUsername"],
     [Function, "validatePassword"],
     [Function, "updateHeader"],
-    [Function, "populateFilter"],
     [Function, "searchMovies"],
+    [Function, "populateFilter"],
     [Function, "filterMovies"],
     [Function, "sortMovies"],
-    [Function, "displayMovie"]
+    [Function, "displayMovie"],
+    [Boolean, "SHOW_SAMPLE"]
   ].forEach(([type, varName]) => {
     obj = window[varName];
     expectedType = type.name.toLowerCase();
@@ -41,5 +42,6 @@ export default {
   searchMovies,
   filterMovies,
   sortMovies,
-  displayMovie
+  displayMovie,
+  SHOW_SAMPLE
 };
