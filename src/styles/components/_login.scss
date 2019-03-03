@@ -31,12 +31,6 @@
   box-sizing: border-box;
 }
 
-.c-login_input-group_input {
-  padding: rem($unit / 6) rem($unit / 3);
-  color: $login--input-color;
-  background-color: $login--input-bg-color;
-}
-
 .c-login_input-group_error {
   display: block;
   text-align: left;
