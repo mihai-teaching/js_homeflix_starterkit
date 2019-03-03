@@ -29,19 +29,19 @@ export default {
     setAppReady({ commit }, value) {
       commit("setAppReady", value);
     },
-    setAuthentification({ commit }, username) {
-      commit("setAuthentification", username);
-    },
     toggleLoading({ commit }) {
       commit("showLoading");
       setTimeout(() => commit("hideLoading"), LOADING_SPEED * 5);
     },
-    login({ commit, dispatch }) {
+    login({ commit, dispatch }, username) {
+      commit("login", username);
       dispatchHelper("app/toggleLoading", dispatch);
-      setTimeout(() => commit("login"), LOADING_SPEED);
+      setTimeout(
+        () => commit("setCurrentState", APP_STATE.HEADER__UPDATING_USER_INFOS),
+        LOADING_SPEED * 5
+      );
     },
-    logout({ commit, dispatch }) {
-      dispatchHelper("app/toggleLoading", dispatch);
+    logout({ commit }) {
       setTimeout(() => commit("logout"), LOADING_SPEED);
     },
     hideLoading({ commit }) {
@@ -67,23 +67,15 @@ export default {
         state.currState = newState;
       }
     },
-    setAuthentification(state, username) {
-      state.username = username;
-      state.isAuthenticated = !!username;
-    },
     setAppReady(state, value) {
       state.isAppReady = value;
     },
-    login(state) {
+    login(state, username) {
+      state.username = username;
       state.isAuthenticated = true;
-      switch (state.currState) {
-        case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
-        case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
-          state.currState = APP_STATE.HEADER__UPDATING_USER_INFOS;
-          break;
-      }
     },
     logout(state) {
+      state.username = null;
       state.isAuthenticated = false;
     },
     showLoading(state) {

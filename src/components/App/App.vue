@@ -7,6 +7,7 @@ import Header from "../Header/Header.vue";
 import InfoBubble from "../InfoBubble/InfoBubble.vue";
 import Loading from "../Loading/Loading.vue";
 import Login from "../Login/Login.vue";
+import Main from "../Main/Main.vue";
 
 // Constants
 import { APP_STATE, LOADING_SPEED } from "./core/constants";
@@ -35,6 +36,16 @@ export default {
         default:
           return false;
       }
+    },
+    getMainContentVisibility() {
+      switch (this.appCurrentState) {
+        case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
+        case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
+        case APP_STATE.LOGIN__LOG_INTO_APP:
+          return false;
+        default:
+          return this.isAppReady;
+      }
     }
   },
   updated() {},
@@ -52,7 +63,7 @@ export default {
     <Loading/>
     <Header/>
     <Login :show="getLoginVisibility()"/>
-    <!-- <Main :show="!getLoginVisibility()"/> -->
+    <Main :show="getMainContentVisibility()"/>
     <InfoBubble/>
     <Footer/>
   </div>

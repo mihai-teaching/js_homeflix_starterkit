@@ -33,11 +33,7 @@ export default {
     ...mapGetters("app", ["isAppReady", "appCurrentState"])
   },
   methods: {
-    ...mapActions("app", [
-      "setAppState",
-      "toggleLoading",
-      "setAuthentification"
-    ]),
+    ...mapActions("app", ["login", "setAppState"]),
     // Username
     setUsernameValidState(value) {
       if (typeof value === "boolean") {
@@ -97,12 +93,7 @@ export default {
         this.setPasswordValidState(isPasswordValid);
         // Change state
         if (isUsernameValid && isPasswordValid) {
-          this.setAuthentification(usernameValue);
-          this.toggleLoading();
-          setTimeout(
-            () => this.setAppState(APP_STATE.HEADER__UPDATING_USER_INFOS),
-            LOADING_SPEED * 4
-          );
+          this.login();
         }
       } else {
         if (!validateUsername) this.setUsernameValidState(false);
