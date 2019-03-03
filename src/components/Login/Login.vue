@@ -4,21 +4,100 @@ import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
 // Components
 import LoginInput from "./components/LoginInput";
 
+// Helpers
+import data from "../../_helpers/getData";
+import { getReturnTypeError } from "../../_helpers/errors";
+
+// Student's code
+const { validateUsername, validatePassword } = data;
+
+// Constants
+import { APP_STATE } from "../App/core/constants";
+
 export default {
   name: "Login",
   data: function() {
     return {
-      isUserValid: false,
-      isPasswordValid: false
+      isDataValid: false, // Initial value
+      isUsernameValid: true,
+      isPasswordValid: true
     };
   },
   components: {
     LoginInput
   },
   computed: {
-    ...mapGetters("app", ["isAppReady"])
+    ...mapGetters("app", ["isAppReady", "appCurrentState"])
   },
-  methods: {}
+  methods: {
+    ...mapActions("app", ["setAppState"]),
+    // Username
+    setUsernameValidState(value) {
+      if (typeof value === "boolean") {
+        this.isUsernameValid = value;
+        this.isDataValid = value && this.isPasswordValid;
+      } else {
+        this.isUsernameValid = false;
+        this.isDataValid = false;
+        console.error(getReturnTypeError("validateUsername", value, "boolean"));
+      }
+    },
+    onUsernameChange({ target }) {
+      if (validateUsername) {
+        const isValid = validateUsername(target.value);
+        this.setUsernameValidState(isValid);
+        this.setAppState(APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION);
+      } else {
+        this.setAppState(APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION);
+        this.setUsernameValidState(false);
+      }
+    },
+    // Password
+    setPasswordValidState(value) {
+      if (typeof value === "boolean") {
+        this.isPasswordValid = value;
+        this.isDataValid = value && this.isPasswordValid;
+      } else {
+        this.isPasswordValid = false;
+        this.isDataValid = false;
+        console.error(getReturnTypeError("validatePassword", value, "boolean"));
+      }
+    },
+    onPasswordChange({ target }) {
+      if (validatePassword) {
+        const isValid = validatePassword(target.value);
+        this.setPasswordValidState(isValid);
+        this.setAppState(APP_STATE.LOGIN__LOG_INTO_APP);
+      } else {
+        if (validateUsername) {
+          this.setAppState(APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION);
+        }
+        this.setPasswordValidState(false);
+      }
+    },
+    // Submit
+    onSubmit(event) {
+      event.preventDefault();
+      const { target } = event;
+      if (validateUsername && validatePassword) {
+        // Get values
+        const usernameValue = target.children[0].children[0].value;
+        const passwordValue = target.children[1].children[0].value;
+        // Validate inputs
+        const isUsernameValid = validateUsername(usernameValue);
+        this.setUsernameValidState(isUsernameValid);
+        const isPasswordValid = validateUsername(passwordValue);
+        this.setPasswordValidState(isPasswordValid);
+        //
+        if (isUsernameValid && isPasswordValid) {
+          this.setAppState(APP_STATE.HEADER__UPDATING_USER_INFOS);
+        }
+      } else {
+        if (!validateUsername) this.setUsernameValidState(false);
+        if (!validatePassword) this.setPasswordValidState(false);
+      }
+    }
+  }
 };
 </script>
 
@@ -27,17 +106,21 @@ export default {
     <div v-if="isAppReady" class="c-login">
       <h1 class="c-login_title">Welcome</h1>
       <hr class="c-login_hr">
-      <form class="c-login_form">
+      <form class="c-login_form" @submit="onSubmit">
         <LoginInput
           type="text"
+          name="password"
           placeholder="username"
-          :hasError="!isUserValid"
+          :onChange="onUsernameChange"
+          :hasError="!isUsernameValid"
           errorMsg="The username is not valid"
         />
         <LoginInput
           type="password"
+          name="username"
           placeholder="password"
-          :hasError="!isUserValid"
+          :onChange="onPasswordChange"
+          :hasError="!isPasswordValid"
           errorMsg="The password is not valid"
         />
         <button type="submit" class="c-login_btn">Login</button>

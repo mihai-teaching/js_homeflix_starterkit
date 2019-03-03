@@ -16,7 +16,7 @@ import { APP_STATE } from "../../App/core/constants";
 const functionHighlightHelper = (fn, args = [], returnType = "void") =>
   `<span class="-function">${fn}( ${args
     .map(arg => `<span class="-argument">${arg}</span>`)
-    .join(", ")} ) : <span class="-return">${returnType}</span></span>`;
+    .join(", ")} ) : <span class="-return">${returnType}</span></span>.`;
 
 const textHighlightHelper = content =>
   `<span class="-highlight">${content}</span>`;
@@ -36,16 +36,18 @@ export default appCurrentState => {
   switch (appCurrentState) {
     case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
       return `${th("Create")} and ${th("complete")} the function ${fh(
-        "usernameValidation",
+        "validateUsername",
         ["value"],
         "Boolean"
       )}.`;
     case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
       return `${th("Create")} and ${th("complete")} the function ${fh(
-        "passwordValidation",
+        "validatePassword",
         ["value"],
         "Boolean"
       )}`;
+    case APP_STATE.LOGIN__LOG_INTO_APP:
+      return `Press the ${th("Login")} button`;
     case APP_STATE.HEADER__UPDATING_USER_INFOS:
     case APP_STATE.MOVIES__ADDING_SEARCH_FEATURE:
     case APP_STATE.MOVIES__ADDING_ORDER_FILTER_FEATURE:

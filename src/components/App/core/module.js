@@ -23,6 +23,9 @@ export default {
     isOverlay: false
   },
   actions: {
+    setAppState({ commit }, value) {
+      commit("setCurrentState", value);
+    },
     setAppReady({ commit }, value) {
       commit("setAppReady", value);
     },
@@ -57,7 +60,9 @@ export default {
   },
   mutations: {
     setCurrentState(state, newState) {
-      state.currState = newState;
+      if (state.currState !== newState) {
+        state.currState = newState;
+      }
     },
     setAppReady(state, value) {
       state.isAppReady = value;

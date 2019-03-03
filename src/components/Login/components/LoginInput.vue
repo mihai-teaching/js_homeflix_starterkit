@@ -28,7 +28,7 @@ export default {
       class="c-login_input-group_input"
       :type="type"
       :placeholder="placeholder"
-      :onChange="onChange"
+      @keyup="onChange"
     >
     <span :class="getClassNames()">{{ errorMsg }}</span>
   </div>
