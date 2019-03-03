@@ -12,7 +12,7 @@ import { getReturnTypeError } from "../../_helpers/errors";
 const { validateUsername, validatePassword } = data;
 
 // Constants
-import { APP_STATE } from "../App/core/constants";
+import { APP_STATE, LOADING_SPEED } from "../App/core/constants";
 
 export default {
   name: "Login",
@@ -23,6 +23,9 @@ export default {
       isPasswordValid: true
     };
   },
+  props: {
+    show: Boolean
+  },
   components: {
     LoginInput
   },
@@ -30,7 +33,11 @@ export default {
     ...mapGetters("app", ["isAppReady", "appCurrentState"])
   },
   methods: {
-    ...mapActions("app", ["setAppState"]),
+    ...mapActions("app", [
+      "setAppState",
+      "toggleLoading",
+      "setAuthentification"
+    ]),
     // Username
     setUsernameValidState(value) {
       if (typeof value === "boolean") {
@@ -90,9 +97,12 @@ export default {
         this.setPasswordValidState(isPasswordValid);
         // Change state
         if (isUsernameValid && isPasswordValid) {
-          this.setAppState(APP_STATE.HEADER__UPDATING_USER_INFOS, {
-            username: usernameValue
-          });
+          this.setAuthentification(usernameValue);
+          this.toggleLoading();
+          setTimeout(
+            () => this.setAppState(APP_STATE.HEADER__UPDATING_USER_INFOS),
+            LOADING_SPEED * 4
+          );
         }
       } else {
         if (!validateUsername) this.setUsernameValidState(false);
@@ -105,7 +115,7 @@ export default {
 
 <template>
   <transition :duration="{ enter: 2000, leave: 0 }">
-    <div v-if="isAppReady" class="c-login">
+    <div v-if="show" class="c-login">
       <h1 class="c-login_title">Welcome</h1>
       <hr class="c-login_hr">
       <form class="c-login_form" @submit="onSubmit">

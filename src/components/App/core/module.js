@@ -3,7 +3,7 @@
 // ======================================================
 
 // Constants
-import { APP_STATE, OVERLAY_SPEED } from "./constants";
+import { APP_STATE, LOADING_SPEED } from "./constants";
 
 // Helpers
 const dispatchHelper = (action, dispatch) =>
@@ -23,23 +23,26 @@ export default {
     isOverlay: false
   },
   actions: {
-    setAppState({ commit }, value, extras = {}) {
-      commit("setCurrentState", { newState: value, ...extras });
+    setAppState({ commit }, newState) {
+      commit("setCurrentState", newState);
     },
     setAppReady({ commit }, value) {
       commit("setAppReady", value);
     },
+    setAuthentification({ commit }, username) {
+      commit("setAuthentification", username);
+    },
     toggleLoading({ commit }) {
       commit("showLoading");
-      setTimeout(() => commit("hideLoading"), OVERLAY_SPEED);
+      setTimeout(() => commit("hideLoading"), LOADING_SPEED * 5);
     },
     login({ commit, dispatch }) {
       dispatchHelper("app/toggleLoading", dispatch);
-      setTimeout(() => commit("login"), OVERLAY_SPEED);
+      setTimeout(() => commit("login"), LOADING_SPEED);
     },
     logout({ commit, dispatch }) {
       dispatchHelper("app/toggleLoading", dispatch);
-      setTimeout(() => commit("logout"), OVERLAY_SPEED);
+      setTimeout(() => commit("logout"), LOADING_SPEED);
     },
     hideLoading({ commit }) {
       commit("hideLoading");
@@ -59,14 +62,14 @@ export default {
     isOverlay: state => state.isOverlay
   },
   mutations: {
-    setCurrentState(state, params) {
-      if (params.newState === APP_STATE.HEADER__UPDATING_USER_INFOS) {
-        state.username = params.username;
-        state.isAuthenticated = true;
+    setCurrentState(state, newState) {
+      if (state.currState !== newState) {
+        state.currState = newState;
       }
-      if (state.currState !== params.newState) {
-        state.currState = params.newState;
-      }
+    },
+    setAuthentification(state, username) {
+      state.username = username;
+      state.isAuthenticated = !!username;
     },
     setAppReady(state, value) {
       state.isAppReady = value;

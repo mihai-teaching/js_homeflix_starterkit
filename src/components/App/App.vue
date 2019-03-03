@@ -9,7 +9,7 @@ import Loading from "../Loading/Loading.vue";
 import Login from "../Login/Login.vue";
 
 // Constants
-import { APP_STATE, OVERLAY_SPEED } from "./core/constants";
+import { APP_STATE, LOADING_SPEED } from "./core/constants";
 
 export default {
   name: "App",
@@ -30,17 +30,19 @@ export default {
       switch (this.appCurrentState) {
         case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
         case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
+        case APP_STATE.LOGIN__LOG_INTO_APP:
           return this.isAppReady;
+        default:
+          return false;
       }
-      return this.isAppReady;
     }
   },
   updated() {},
   mounted() {
     setTimeout(() => {
       this.hideLoading();
-      setTimeout(() => this.setAppReady(true), OVERLAY_SPEED / 3);
-    }, OVERLAY_SPEED);
+      setTimeout(() => this.setAppReady(true), LOADING_SPEED / 3);
+    }, LOADING_SPEED * 3);
   }
 };
 </script>
@@ -49,7 +51,7 @@ export default {
   <div class="c-app">
     <Loading/>
     <Header/>
-    <Login/>
+    <Login :show="getLoginVisibility()"/>
     <!-- <Main :show="!getLoginVisibility()"/> -->
     <InfoBubble/>
     <Footer/>

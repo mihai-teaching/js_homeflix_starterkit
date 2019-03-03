@@ -5,12 +5,12 @@ import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
 import Spinner from "../../components-ui/Spinner.vue";
 
 // Constants
-import { OVERLAY_SPEED } from "../App/core/constants";
+import { LOADING_SPEED } from "../App/core/constants";
 
 export default {
   name: "Loading",
   data: function() {
-    return { duration: OVERLAY_SPEED };
+    return { duration: LOADING_SPEED };
   },
   computed: {
     ...mapGetters("app", ["isLoading"])
