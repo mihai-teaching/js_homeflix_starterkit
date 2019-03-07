@@ -89,7 +89,7 @@ export default {
         // Validate inputs
         const isUsernameValid = validateUsername(usernameValue);
         this.setUsernameValidState(isUsernameValid);
-        const isPasswordValid = validateUsername(passwordValue);
+        const isPasswordValid = validatePassword(passwordValue);
         this.setPasswordValidState(isPasswordValid);
         // Change state
         if (isUsernameValid && isPasswordValid) {

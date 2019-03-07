@@ -2,10 +2,8 @@
 // Components-ui / Footer
 // ======================================================
 
-$footer--padding: $unit / 5;
-
 .c-footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   padding-top: rem($footer--padding);
