@@ -16,7 +16,7 @@
 @import "tools/fonts";
 @import "tools/layout";
 // @import "tools/ratio";
-// @import "tools/widths";
+@import "tools/widths";
 // @import "tools/familly";
 
 // Generic
@@ -49,6 +49,7 @@
 @import "components/info-bubble";
 @import "components/loading";
 @import "components/login";
+@import "components/main";
 
 // Components - UI
 // ==========================================================================
@@ -63,5 +64,5 @@
 // @import "utilities/states";
 // @import "utilities/headings";
 // @import "utilities/spacing";
-// @import "utilities/widths";
+@import "utilities/widths";
 // @import "utilities/print";

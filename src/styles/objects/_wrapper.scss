@@ -2,7 +2,9 @@
 // Objects / Wrapper
 // ======================================================
 
+$wrapper--width: 1080px;
+
 .o-wrapper {
-  padding-left: rem($unit * 2);
-  padding-right: rem($unit * 2);
+  width: rem($wrapper--width);
+  margin: 0 auto !important;
 }
