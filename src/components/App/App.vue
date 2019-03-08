@@ -19,7 +19,8 @@ export default {
     Header,
     InfoBubble,
     Login,
-    Loading
+    Loading,
+    Main
   },
   computed: {
     ...mapGetters("app", ["appCurrentState", "isAppReady", "isLoading"])
@@ -28,24 +29,14 @@ export default {
     ...mapActions("app", ["hideLoading", "setAppReady", "toggleLoading"]),
     // Check if the login should be displayed, else content
     getLoginVisibility() {
-      switch (this.appCurrentState) {
-        case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
-        case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
-        case APP_STATE.LOGIN__LOG_INTO_APP:
-          return this.isAppReady;
-        default:
-          return false;
-      }
+      return this.appCurrentState <= APP_STATE.LOGIN__LOG_INTO_APP
+        ? this.isAppReady
+        : false;
     },
     getMainContentVisibility() {
-      switch (this.appCurrentState) {
-        case APP_STATE.LOGIN__ADDING_USERNAME_VALIDATION:
-        case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
-        case APP_STATE.LOGIN__LOG_INTO_APP:
-          return false;
-        default:
-          return this.isAppReady;
-      }
+      return this.appCurrentState <= APP_STATE.LOGIN__LOG_INTO_APP
+        ? false
+        : this.isAppReady;
     }
   },
   updated() {},
