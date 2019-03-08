@@ -26,8 +26,7 @@ export default {
       orderValue: "true",
       filterOptions: ["NO_DATA_AVAILABLE"],
       items: [],
-      // showSample: SHOW_SAMPLE ? SHOW_SAMPLE : false
-      showSample: true
+      showSample: SHOW_SAMPLE ? SHOW_SAMPLE : false
     };
   },
   props: {
@@ -127,7 +126,7 @@ export default {
 </script>
 
 <template>
-  <transition>
+  <transition name="fade">
     <main v-if="show" class="c-main">
       <form @submit="onSubmit">
         <input

@@ -5,15 +5,10 @@
 .c-main {
   margin-top: rem($unit * 0.75);
   padding-bottom: rem(120px);
+  &.v-enter-to {
+    transition-delay: $header--speed * 5;
+  }
 }
-
-$main--search-width: 450px;
-$main--search-size: 20px;
-$main--card-height: 380px;
-$main--form-color: #c0c0c0;
-$main--preview-size: 45px;
-$main--header-size: 15px;
-$main--text-size: 14px;
 
 .c-main_search {
   width: rem($main--search-width);
