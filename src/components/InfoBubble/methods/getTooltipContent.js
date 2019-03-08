@@ -39,7 +39,7 @@ export default appCurrentState => {
         "validateUsername",
         ["value"],
         "Boolean"
-      )}.`;
+      )}`;
     case APP_STATE.LOGIN__ADDING_PASSWORD_VALIDATION:
       return `${th("Create")} and ${th("complete")} the function ${fh(
         "validatePassword",
@@ -54,9 +54,36 @@ export default appCurrentState => {
         ["username"]
       )}`;
     case APP_STATE.MOVIES__ADDING_SEARCH_FEATURE:
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "searchMovies",
+        ["movies", "searchValue"],
+        "[movies]"
+      )}`;
     case APP_STATE.MOVIES__ADDING_ORDER_FILTER_FEATURE:
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "sortMovies",
+        ["movies", "isAscending"],
+        "[movies]"
+      )}`;
+    case APP_STATE.MOVIES__POPULATE_SELECT:
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "populateSelect",
+        ["movies"],
+        "[string]"
+      )}`;
     case APP_STATE.MOVIES__ADDING_GENRE_FILTER_FEATURE:
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "filterMovies",
+        ["movies", "genreFilter"],
+        "[movie]"
+      )}`;
+    case APP_STATE.MOVIES__DISPLAYING_MOVIE_DATA:
+      return `${th("Create")} and ${th("complete")} the function ${fh(
+        "displayMovie",
+        ["movies"],
+        "[movie]"
+      )}`;
     default:
-      return "";
+      return `You ${th("completed")} the assignment!`;
   }
 };
